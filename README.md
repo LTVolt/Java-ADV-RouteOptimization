@@ -1,4 +1,4 @@
-# Java-ADV-RouteOptmization
+# Java-ADV-RouteOptimization
 
 Route Optimization project using DSA (Ver 1.0)
 
