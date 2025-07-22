@@ -7,6 +7,7 @@ import java.util.List;
 
 public class Dijkstra {
 
+    // This method is only used for displaying purposes as of now!
     public static Map<Node, Double> calcShortestDistToNode(Graph graph, Node start){
         Map<Node, Double> allDistances = new HashMap<>();
         PriorityQueue<NodeDistancePair> queue =
@@ -35,13 +36,12 @@ public class Dijkstra {
         return allDistances;
     }
 
+    // Here is where is magic happens.
     public static List<Node> calcShortestPath(Graph graph, Node start, Node destination) {
 
         // 1. Initializing all distances as Infinity first.
         Map<Node, Double> allDistances = new HashMap<>();
         Map<Node, Node> predecessor = new HashMap<>();
-
-        double totalDistance = 0;
 
         PriorityQueue<NodeDistancePair> queue =
                 new PriorityQueue<>(Comparator.comparingDouble(NodeDistancePair::getDistance));
@@ -50,7 +50,7 @@ public class Dijkstra {
             allDistances.put(node, Double.POSITIVE_INFINITY);
         }
 
-        //  2. Setting initial distance to 0 and starting the queue.
+        // 2. Setting initial distance to 0 and starting the queue.
         allDistances.put(start, 0.0);
         queue.add(new NodeDistancePair(start, 0.0));
 
@@ -78,9 +78,8 @@ public class Dijkstra {
                     allDistances.put(neighbor, newDistance);
                     predecessor.put(neighbor, currentNode);
                     queue.add(new NodeDistancePair(neighbor,newDistance));
-
-                    totalDistance =+ newDistance; // This line is only for displaying!
                 }
+
             }
         }
 
@@ -96,7 +95,6 @@ public class Dijkstra {
             path.add(0, step);
             step = predecessor.get(step);
         }
-        System.out.println("Total distance travelled: " + totalDistance);
         return path;
     }
 

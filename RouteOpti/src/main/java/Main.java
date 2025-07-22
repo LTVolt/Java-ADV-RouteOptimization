@@ -2,6 +2,7 @@ import Algorithm.Dijkstra;
 import Graph.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
@@ -81,6 +82,8 @@ public class Main {
 
         List<Node> path = Dijkstra.calcShortestPath(graph, start, destination);
 
+        Map<Node, Double> distances = Dijkstra.calcShortestDistToNode(graph, start);
+
         if (path.isEmpty()) {
             System.out.println("\nNo path found. Already there OR " + start + " does not connect to " +
                     destination + " OR invalid response.");
@@ -91,6 +94,8 @@ public class Main {
                 System.out.print(node + " -> ");
             }
             System.out.print("Finish\n");
+            System.out.println("Total distance travelled: " + distances.get(destination));
+
         }
 
         scanner.close();
